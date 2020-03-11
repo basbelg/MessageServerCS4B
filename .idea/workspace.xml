@@ -118,12 +118,12 @@
       <Port>5050</Port>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="ServerPackage.Main" />
+      <option name="MAIN_CLASS_NAME" value="Server.Main" />
       <module name="CS4B-MessageServer" />
       <option name="VM_PARAMETERS" value="--module-path &quot;R:\CS4B\javafx-sdk-13.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ServerPackage.*" />
+          <option name="PATTERN" value="Server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -184,7 +184,7 @@
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1583903669583" duration="4510000" />
       <workItem from="1583952458365" duration="903000" />
-      <workItem from="1583953446815" duration="282000" />
+      <workItem from="1583953446815" duration="6617000" />
     </task>
     <servers />
   </component>
@@ -200,10 +200,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="630" y="284" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1583905378160" />
-    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser" timestamp="1583952858843">
+    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser" timestamp="1583960001628">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1583952858843" />
+    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1583960001628" />
     <state x="882" y="370" key="FileChooserDialogImpl" timestamp="1583903770995">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
