@@ -1,38 +1,57 @@
 package Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+//import java.util.concurrent.BlockingQueue;
+
 import Messages.Packet;
 
 public class Client implements Runnable {
-    private int index;
+    // user info
+    /*private int id;*/
     private String name;
-    private boolean connection;
+    private List<String> channels;
+
+    // client thread
+    private Thread clientThread;
+
+    // connection info
+    private boolean isConnected;
     private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
 
-    public Client(int index, String name, Socket socket) {
-        this.index = index;
-        this.name = name;
+    public Client(/*int id,*/ Socket socket/*, BlockingQueue<Serializable> requests, List<Client> connectedClients*/) {
+        /*this.id = id;*/
+        this.name = "guest";
+        channels = new ArrayList<>();
+        isConnected = true;
         this.socket = socket;
-        connection = true;
+
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        clientThread = new Thread(this);
+        clientThread.start();
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void terminateConnection() {
-        connection = false;
-    }
+    public void setName(String name) {this.name = name;}
+    public void addSubscription(String channel) {channels.add(channel);}
+    public void removeSubscription(String channel) {channels.remove(channel);}
+    public boolean isSubscribed(String channel) {return channels.contains(channel);}
+    /*public int getID() {return id;}*/
+    public Thread getClientThread() {return clientThread;}
+    public void terminateConnection() {isConnected = false;}
 
     public void sendPacket(Packet p) {
         try {
-            out = new DataOutputStream(socket.getOutputStream());
-
             // send packet to client
         }
         catch(IOException e) {
@@ -43,18 +62,15 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
-            in = new DataInputStream(socket.getInputStream());
-
-            while(connection) {
+            while(isConnected) {
                 // serve client until client disconnects
             }
         }
-        catch(IOException e) {
+        catch(IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         finally {
-            // delete this object when it disconnects
+            // remove this object when it disconnects
         }
-
     }
 }
