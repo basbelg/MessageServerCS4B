@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ChatRoomServer.iml" filepath="$PROJECT_DIR$/ChatRoomServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS4B-MessageServer.iml" filepath="$PROJECT_DIR$/CS4B-MessageServer.iml" />
     </modules>
   </component>
 </project>
