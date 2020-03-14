@@ -25,10 +25,10 @@ public class Client implements Runnable {
 
     // server info
     private BlockingQueue<Serializable> requests;
-    private List<Client> connectedClients;
-    private HashMap<String, List<Client>> subscriberList;
+    private List<Client> clients;
+    private HashMap<String, List<Client>> subscribers;
 
-    public Client(Socket socket, BlockingQueue<Serializable> requests, List<Client> connectedClients, HashMap<String, List<Client>> subscriberList) {
+    public Client(Socket socket, BlockingQueue<Serializable> requests, List<Client> clients, HashMap<String, List<Client>> subscribers) {
         try {
             // set client info
             this.name = "guest";
@@ -42,9 +42,9 @@ public class Client implements Runnable {
 
             // set server info
             this.requests = requests;
-            this.connectedClients = connectedClients;
-            this.subscriberList = subscriberList;
-            connectedClients.add(this);
+            this.clients = clients;
+            this.subscribers = subscribers;
+            clients.add(this);
 
             // create and start client-handling thread
             clientThread = new Thread(this);
@@ -59,15 +59,15 @@ public class Client implements Runnable {
 
     public void addSubscription(String channel) {
         channels.add(channel);
-        subscriberList.get(channel).add(this);
+        subscribers.get(channel).add(this);
     }
 
     public void removeSubscription(String channel) {
         channels.remove(channel);
-        subscriberList.get(channel).remove(this);
+        subscribers.get(channel).remove(this);
     }
 
-    public boolean isSubscribed(String channel) {return channels.contains(channel);}
+    public final boolean isSubscribed(String channel) {return channels.contains(channel);}
 
     public Thread getClientThread() {return clientThread;}
 
@@ -98,9 +98,9 @@ public class Client implements Runnable {
     }
 
     private void removeConnection() {
-        connectedClients.remove(this);
+        clients.remove(this);
         for(String channel: channels) {
-            subscriberList.get(channel).remove(this);
+            subscribers.get(channel).remove(this);
         }
     }
 }
