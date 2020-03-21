@@ -25,4 +25,8 @@ public class PictureMsg {
     public void setPicData(byte[] picData) {
         this.picData = picData;
     }
+
+    public void setPublishToChannel(String publishToChannel) {
+        this.publishToChannel = publishToChannel;
+    }
 }
