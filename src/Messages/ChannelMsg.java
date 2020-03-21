@@ -18,4 +18,8 @@ public class ChannelMsg {
     public String getTextMsg() {
         return textMsg;
     }
+
+    public String getPublishToChannel() {
+        return publishToChannel;
+    }
 }
