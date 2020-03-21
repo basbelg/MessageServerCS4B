@@ -5,10 +5,6 @@ public class ChannelMsg {
     String publishToChannel;
     String sender;
 
-    public ChannelMsg() {
-        this("<UNKNOWN>", "<UNKNOWN>", "<UNKNOWN>");
-    }
-
     public ChannelMsg(String textMsg, String publishToChannel, String sender) {
         this.textMsg = textMsg;
         this.publishToChannel = publishToChannel;
