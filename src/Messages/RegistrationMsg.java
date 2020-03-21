@@ -18,4 +18,8 @@ public class RegistrationMsg {
     public String getUsername() {
         return username;
     }
+
+    public List<String> getSubscribedChannels() {
+        return subscribedChannels;
+    }
 }
