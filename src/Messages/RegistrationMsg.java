@@ -14,4 +14,8 @@ public class RegistrationMsg {
         this.username = username;
         this.subscribedChannels = subscribedChannels;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
