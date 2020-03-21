@@ -21,4 +21,8 @@ public class PictureMsg {
     public String getSender() {
         return sender;
     }
+
+    public void setPicData(byte[] picData) {
+        this.picData = picData;
+    }
 }
