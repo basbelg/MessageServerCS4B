@@ -13,4 +13,8 @@ public class PictureMsg {
     public byte[] getPicData() {
         return picData;
     }
+
+    public String getPublishToChannel() {
+        return publishToChannel;
+    }
 }
