@@ -22,4 +22,8 @@ public class ChannelMsg {
     public String getPublishToChannel() {
         return publishToChannel;
     }
+
+    public String getSender() {
+        return sender;
+    }
 }
