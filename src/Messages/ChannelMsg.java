@@ -26,4 +26,8 @@ public class ChannelMsg {
     public String getSender() {
         return sender;
     }
+
+    public void setTextMsg(String textMsg) {
+        this.textMsg = textMsg;
+    }
 }
