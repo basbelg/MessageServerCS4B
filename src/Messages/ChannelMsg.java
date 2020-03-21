@@ -5,10 +5,9 @@ public class ChannelMsg {
     String publishToChannel;
     String sender;
 
-    public ChannelMsg(String textMsg, String publishToChannel, String sender) {
+    public ChannelMsg(String textMsg, String publishToChannel) {
         this.textMsg = textMsg;
         this.publishToChannel = publishToChannel;
-        this.sender = sender;
     }
 
     public String getTextMsg() {
