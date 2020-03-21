@@ -29,4 +29,8 @@ public class PictureMsg {
     public void setPublishToChannel(String publishToChannel) {
         this.publishToChannel = publishToChannel;
     }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 }
