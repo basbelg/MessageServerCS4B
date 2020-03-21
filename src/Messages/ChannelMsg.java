@@ -14,4 +14,8 @@ public class ChannelMsg {
         this.publishToChannel = publishToChannel;
         this.sender = sender;
     }
+
+    public String getTextMsg() {
+        return textMsg;
+    }
 }
