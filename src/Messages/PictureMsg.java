@@ -9,4 +9,8 @@ public class PictureMsg {
         this.picData = picData;
         this.publishToChannel = publishToChannel;
     }
+
+    public byte[] getPicData() {
+        return picData;
+    }
 }
