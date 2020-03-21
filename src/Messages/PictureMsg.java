@@ -17,4 +17,8 @@ public class PictureMsg {
     public String getPublishToChannel() {
         return publishToChannel;
     }
+
+    public String getSender() {
+        return sender;
+    }
 }
