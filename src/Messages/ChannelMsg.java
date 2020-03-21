@@ -30,4 +30,8 @@ public class ChannelMsg {
     public void setTextMsg(String textMsg) {
         this.textMsg = textMsg;
     }
+
+    public void setPublishToChannel(String publishToChannel) {
+        this.publishToChannel = publishToChannel;
+    }
 }
