@@ -18,4 +18,8 @@ public class ChangeChannelMsg {
     public List<ChannelMsg> getChatHistory() {
         return chatHistory;
     }
+
+    public void setChatHistory(List<ChannelMsg> chatHistory) {
+        this.chatHistory = chatHistory;
+    }
 }
