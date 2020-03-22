@@ -1,8 +1,9 @@
 package Messages;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RegistrationMsg {
+public class RegistrationMsg implements Serializable {
     private String username;
     private List<String> subscribedChannels;
 
