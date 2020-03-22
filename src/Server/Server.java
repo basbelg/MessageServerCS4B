@@ -55,7 +55,7 @@ public class Server implements Runnable {
             subscribers = (HashMap) synchronizedMap(new HashMap<String, List<Client>>());
             history = (HashMap) synchronizedMap(new HashMap<String, List<Serializable>>());
 
-
+            serverPublishThread = new RequestHandler(requests, clients, subscribers, history);
 
             while(!shutdown) {
                 // wait on client connection
