@@ -15,7 +15,7 @@ public class Packet implements Serializable {
         return type;
     }
 
-    public Serializable getValue() {
+    public Serializable getData() {
         return data;
     }
 }
