@@ -1,6 +1,8 @@
 package Messages;
 
-public class PictureMsg {
+import java.io.Serializable;
+
+public class PictureMsg  implements Serializable {
     byte[] picData;
     String publishToChannel;
     String sender;
