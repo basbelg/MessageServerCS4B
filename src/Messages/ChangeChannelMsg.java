@@ -22,7 +22,15 @@ public class ChangeChannelMsg implements Serializable {
         return chatHistory;
     }
 
+    public String getSender() {
+        return sender;
+    }
+
     public void setChatHistory(List<ChannelMsg> chatHistory) {
         this.chatHistory = chatHistory;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 }
