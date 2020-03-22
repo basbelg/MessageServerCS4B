@@ -12,6 +12,8 @@ public class RequestHandler implements Runnable {
     private List<Client> clients;
     private HashMap<String, List<Client>> subscribers;
     private HashMap<String, List<Serializable>> history;
+    private Thread publishThread;
+    private boolean keepPublishing;
 
     public RequestHandler(BlockingQueue<Packet> requests, List<Client> clients, HashMap<String, List<Client>> subscribers,
                           HashMap<String, List<Serializable>> history) {
@@ -19,6 +21,10 @@ public class RequestHandler implements Runnable {
         this.clients = clients;
         this.subscribers = subscribers;
         this.history = history;
+
+        keepPublishing = true;
+        publishThread = new Thread(this);
+        publishThread.start();
     }
 
 
