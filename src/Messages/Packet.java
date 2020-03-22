@@ -10,4 +10,8 @@ public class Packet implements Serializable {
         this.type = type;
         this.value = value;
     }
+
+    public String getType() {
+        return type;
+    }
 }
