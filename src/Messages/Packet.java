@@ -6,7 +6,7 @@ public class Packet implements Serializable {
     private String type;
     private Serializable data;
 
-    public Packet(String type, Serializable value) {
+    public Packet(String type, Serializable data) {
         this.type = type;
         this.data = data;
     }
