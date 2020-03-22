@@ -14,4 +14,8 @@ public class ChangeChannelMsg {
     public String getSwappedChannel() {
         return swappedChannel;
     }
+
+    public List<ChannelMsg> getChatHistory() {
+        return chatHistory;
+    }
 }
