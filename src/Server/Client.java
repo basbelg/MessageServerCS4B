@@ -71,6 +71,10 @@ public class Client implements Runnable {
 
     public Thread getClientThread() {return clientThread;}
 
+    public String getName() {
+        return name;
+    }
+
     public void terminateConnection() {isConnected = false;}
 
     public void sendPacket(Packet p) {
