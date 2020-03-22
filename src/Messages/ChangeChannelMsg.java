@@ -1,8 +1,9 @@
 package Messages;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ChangeChannelMsg {
+public class ChangeChannelMsg implements Serializable {
     private String swappedChannel;
     List<ChannelMsg> chatHistory;
 
