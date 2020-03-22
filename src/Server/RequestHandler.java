@@ -33,7 +33,8 @@ public class RequestHandler implements Runnable {
     public void run() {
         try {
             while(keepPublishing) {
-                requests.take();
+                Packet p = requests.take();
+
                 
             }
         }
