@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ChangeChannelMsg implements Serializable {
     private String swappedChannel;
-    List<ChannelMsg> chatHistory;
+    private List<ChannelMsg> chatHistory;
 
     public ChangeChannelMsg(String swappedChannel) {
         this.swappedChannel = swappedChannel;

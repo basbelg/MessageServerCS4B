@@ -3,9 +3,9 @@ package Messages;
 import java.io.Serializable;
 
 public class ChannelMsg implements Serializable {
-    String textMsg;
-    String publishToChannel;
-    String sender;
+    private String textMsg;
+    private String publishToChannel;
+    private String sender;
 
     public ChannelMsg(String textMsg, String publishToChannel) {
         this.textMsg = textMsg;

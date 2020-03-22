@@ -3,9 +3,9 @@ package Messages;
 import java.io.Serializable;
 
 public class PictureMsg  implements Serializable {
-    byte[] picData;
-    String publishToChannel;
-    String sender;
+    private byte[] picData;
+    private String publishToChannel;
+    private String sender;
 
     public PictureMsg(byte[] picData, String publishToChannel) {
         this.picData = picData;
