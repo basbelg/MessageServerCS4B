@@ -75,6 +75,10 @@ public class Client implements Runnable {
         return name;
     }
 
+    public ObjectOutputStream getOut() {
+        return out;
+    }
+
     public void terminateConnection() {isConnected = false;}
 
     public void sendPacket(Packet p) {
