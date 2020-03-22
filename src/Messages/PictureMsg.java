@@ -8,6 +8,7 @@ public class PictureMsg {
     public PictureMsg(byte[] picData, String publishToChannel) {
         this.picData = picData;
         this.publishToChannel = publishToChannel;
+        this.sender = "";
     }
 
     public byte[] getPicData() {
