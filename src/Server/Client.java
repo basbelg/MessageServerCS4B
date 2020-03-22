@@ -24,11 +24,11 @@ public class Client implements Runnable {
     private ObjectOutputStream out;
 
     // server info
-    private BlockingQueue<Serializable> requests;
+    private BlockingQueue<Packet> requests;
     private List<Client> clients;
     private HashMap<String, List<Client>> subscribers;
 
-    public Client(Socket socket, BlockingQueue<Serializable> requests, List<Client> clients, HashMap<String, List<Client>> subscribers) {
+    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, HashMap<String, List<Client>> subscribers) {
         try {
             // set client info
             this.name = "guest";
@@ -90,7 +90,7 @@ public class Client implements Runnable {
             while(isConnected) {
                 // serve client until client disconnects
                 Packet p = (Packet) in.readObject();
-                requests.add(p.getData());
+                requests.add(p);
             }
         }
         catch(IOException | ClassNotFoundException e) {

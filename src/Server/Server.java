@@ -13,7 +13,7 @@ import static java.util.Collections.*;
 import Messages.Packet;
 
 public class Server implements Runnable {
-    private BlockingQueue<Serializable> requests;
+    private BlockingQueue<Packet> requests;
     private int port;
     private boolean shutdown;
     private Socket socket;
