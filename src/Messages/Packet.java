@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Packet implements Serializable {
     public String type;
-    public Serializable value;
+    public Serializable data;
 
     public Packet(String type, Serializable value) {
         this.type = type;
-        this.value = value;
+        this.data = data;
     }
 
     public String getType() {
@@ -16,6 +16,6 @@ public class Packet implements Serializable {
     }
 
     public Serializable getValue() {
-        return value;
+        return data;
     }
 }
