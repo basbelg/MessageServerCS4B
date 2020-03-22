@@ -11,6 +11,7 @@ public class ChangeChannelMsg implements Serializable {
     public ChangeChannelMsg(String swappedChannel) {
         this.swappedChannel = swappedChannel;
         this.chatHistory = null;
+        this.sender = "";
     }
 
     public String getSwappedChannel() {
