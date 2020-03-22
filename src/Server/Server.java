@@ -20,6 +20,7 @@ public class Server implements Runnable {
     private ServerSocket serverSocket;
     private List<Client> clients;
     private HashMap<String, List<Client>> subscribers;
+    private HashMap<String, List<Serializable>> history;
 
     public Server() {
         port = 8000;
@@ -51,6 +52,7 @@ public class Server implements Runnable {
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());
             subscribers = (HashMap) synchronizedMap(new HashMap<String, List<Client>>());
+            history = (HashMap) synchronizedMap(new HashMap<String, List<Serializable>>());
 
             while(!shutdown) {
                 // wait on client connection
