@@ -10,4 +10,8 @@ public class ChangeChannelMsg {
         this.swappedChannel = swappedChannel;
         this.chatHistory = null;
     }
+
+    public String getSwappedChannel() {
+        return swappedChannel;
+    }
 }
