@@ -21,6 +21,7 @@ public class Server implements Runnable {
     private List<Client> clients;
     private HashMap<String, List<Client>> subscribers;
     private HashMap<String, List<Serializable>> history;
+    private RequestHandler serverPublishThread;
 
     public Server() {
         port = 8000;
@@ -53,6 +54,8 @@ public class Server implements Runnable {
             clients = synchronizedList(new ArrayList<Client>());
             subscribers = (HashMap) synchronizedMap(new HashMap<String, List<Client>>());
             history = (HashMap) synchronizedMap(new HashMap<String, List<Serializable>>());
+
+
 
             while(!shutdown) {
                 // wait on client connection
