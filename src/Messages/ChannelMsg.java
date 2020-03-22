@@ -8,6 +8,7 @@ public class ChannelMsg {
     public ChannelMsg(String textMsg, String publishToChannel) {
         this.textMsg = textMsg;
         this.publishToChannel = publishToChannel;
+        this.sender = "";
     }
 
     public String getTextMsg() {
