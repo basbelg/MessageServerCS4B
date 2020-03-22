@@ -14,4 +14,8 @@ public class Packet implements Serializable {
     public String getType() {
         return type;
     }
+
+    public Serializable getValue() {
+        return value;
+    }
 }
