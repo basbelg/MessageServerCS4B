@@ -1,6 +1,8 @@
 package Messages;
 
-public class ChannelMsg {
+import java.io.Serializable;
+
+public class ChannelMsg implements Serializable {
     String textMsg;
     String publishToChannel;
     String sender;
