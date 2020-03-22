@@ -31,6 +31,14 @@ public class RequestHandler implements Runnable {
 
     @Override
     public void run() {
-
+        try {
+            while(keepPublishing) {
+                requests.take();
+                
+            }
+        }
+        catch(InterruptedException e) {
+            System.out.println("RequestHandler INTERRUPTED");
+        }
     }
 }
