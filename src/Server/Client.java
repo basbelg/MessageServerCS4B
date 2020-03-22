@@ -76,6 +76,8 @@ public class Client implements Runnable {
     public void sendPacket(Packet p) {
         try {
             // send packet to client
+            out.writeObject(p);
+
         }
         catch(IOException e) {
             e.printStackTrace();
@@ -87,6 +89,8 @@ public class Client implements Runnable {
         try {
             while(isConnected) {
                 // serve client until client disconnects
+                Packet p = (Packet) in.readObject();
+                requests.add(p.getData());
             }
         }
         catch(IOException | ClassNotFoundException e) {
