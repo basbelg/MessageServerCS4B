@@ -95,11 +95,13 @@ public class RequestHandler implements Runnable {
 
                             changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
 
-                            for(Client client : clients) {
-                                // If this is the client who wants to change channels, send th
-                                if(client.getName().equals(changeChannelMsg.getSender())) {
-                                    client.getOut().writeObject(p);
-                                    break; //If the client who wants to change their channel is found, exit the loop
+                            synchronized (clients) {
+                                for (Client client : clients) {
+                                    // If this is the client who wants to change channels, send th
+                                    if (client.getName().equals(changeChannelMsg.getSender())) {
+                                        client.getOut().writeObject(p);
+                                        break; //If the client who wants to change their channel is found, exit the loop
+                                    }
                                 }
                             }
                             break;
