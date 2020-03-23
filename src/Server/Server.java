@@ -19,8 +19,8 @@ public class Server implements Runnable {
     private Socket socket;
     private ServerSocket serverSocket;
     private List<Client> clients;
-    private HashMap<String, List<Client>> subscribers;
-    private HashMap<String, List<Serializable>> history;
+    private Map<String, List<Client>> subscribers;
+    private Map<String, List<Serializable>> history;
     private RequestHandler serverPublishThread;
 
     public Server() {
@@ -52,13 +52,13 @@ public class Server implements Runnable {
             serverSocket = new ServerSocket(port);
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());
-            subscribers = (HashMap) synchronizedMap(new HashMap<String, List<Client>>());
-            history = (HashMap) synchronizedMap(new HashMap<String, List<Serializable>>());
+            subscribers = synchronizedMap(new HashMap<>());
+            history = synchronizedMap(new HashMap<>());
 
             String[] courses = {"CS1A", "CS1B", "CS4A", "CS4B", "CS3A", "CS3B"};
             for(int i = 0; i < courses.length; ++i) {
-                subscribers.put(courses[i], new ArrayList<Client>());
-                history.put(courses[i], new ArrayList<Serializable>());
+                subscribers.put(courses[i], new ArrayList<>());
+                history.put(courses[i], new ArrayList<>());
             }
 
             serverPublishThread = new RequestHandler(requests, clients, subscribers, history);

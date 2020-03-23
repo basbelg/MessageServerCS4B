@@ -3,8 +3,8 @@ package Server;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import Messages.*;
@@ -27,9 +27,9 @@ public class Client implements Runnable {
     // server info
     private BlockingQueue<Packet> requests;
     private List<Client> clients;
-    private HashMap<String, List<Client>> subscribers;
+    private Map<String, List<Client>> subscribers;
 
-    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, HashMap<String, List<Client>> subscribers) {
+    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers) {
         try {
             // set client info
             this.name = "guest";

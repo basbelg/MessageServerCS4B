@@ -6,18 +6,19 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 public class RequestHandler implements Runnable {
     private BlockingQueue<Packet> requests;
     private List<Client> clients;
-    private HashMap<String, List<Client>> subscribers;
-    private HashMap<String, List<Serializable>> history;
+    private Map<String, List<Client>> subscribers;
+    private Map<String, List<Serializable>> history;
     private Thread publishThread;
     private boolean keepPublishing;
 
-    public RequestHandler(BlockingQueue<Packet> requests, List<Client> clients, HashMap<String, List<Client>> subscribers,
-                          HashMap<String, List<Serializable>> history) {
+    public RequestHandler(BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers,
+                          Map<String, List<Serializable>> history) {
         this.requests = requests;
         this.clients = clients;
         this.subscribers = subscribers;
