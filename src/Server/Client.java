@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 import Messages.Packet;
+import Messages.RegistrationMsg;
 
 public class Client implements Runnable {
     // client info
@@ -98,6 +99,19 @@ public class Client implements Runnable {
             while(isConnected) {
                 // serve client until client disconnects
                 Packet p = (Packet) in.readObject();
+
+                switch(p.getType()) {
+                    case "REG-MSG" :
+                        RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
+
+                        name = registrationMsg.getUsername();
+                        channels = registrationMsg.getSubscribedChannels();
+
+                        for(String channel : channels) {
+                            subscribers.get(channel).add(this);
+                        }
+                }
+
                 requests.add(p);
             }
         }

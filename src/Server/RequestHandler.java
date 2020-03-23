@@ -26,16 +26,16 @@ public class RequestHandler implements Runnable {
         publishThread = new Thread(this);
         publishThread.start();
     }
-
-
-
+    
     @Override
     public void run() {
         try {
             while(keepPublishing) {
                 Packet p = requests.take();
 
-                
+                switch(p.getType()) {
+                    case "REG-MSG" :
+                }
             }
         }
         catch(InterruptedException e) {
