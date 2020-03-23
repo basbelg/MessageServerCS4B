@@ -35,6 +35,11 @@ public class RequestHandler implements Runnable {
 
                 switch(p.getType()) {
                     case "REG-MSG" :
+
+
+                        for(String channel : channels) {
+                            subscribers.get(channel).add(this);
+                        }
                 }
             }
         }

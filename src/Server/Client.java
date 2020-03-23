@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-import Messages.Packet;
-import Messages.RegistrationMsg;
+import Messages.*;
 
 public class Client implements Runnable {
     // client info
@@ -107,9 +106,22 @@ public class Client implements Runnable {
                         name = registrationMsg.getUsername();
                         channels = registrationMsg.getSubscribedChannels();
 
-                        for(String channel : channels) {
-                            subscribers.get(channel).add(this);
-                        }
+                        break;
+
+                    case "TXT-MSG" :
+                        ((ChannelMsg) p.getData()).setSender(name);
+                        break;
+
+                    case "PIC-MSG" :
+                        ((PictureMsg) p.getData()).setSender(name);
+                        break;
+
+                    case "CNG-MSG" :
+                        ((ChangeChannelMsg) p.getData()).setSender(name);
+                        break;
+
+                    default :
+                        System.out.println("ERROR");
                 }
 
                 requests.add(p);
