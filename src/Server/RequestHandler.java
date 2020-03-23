@@ -43,7 +43,7 @@ public class RequestHandler implements Runnable {
                             history.get(channel).add(registrationMsg);
 
                             for(Client client : subscribers.get(channel)) {
-                                if()
+                                if(client.g)
                             }
                         }
                 }

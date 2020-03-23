@@ -76,6 +76,10 @@ public class Client implements Runnable {
         return name;
     }
 
+    public String getCurrentChannel() {
+        return currentChannel;
+    }
+
     public ObjectOutputStream getOut() {
         return out;
     }
