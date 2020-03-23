@@ -1,9 +1,10 @@
 package Server;
 
+import Messages.ChangeChannelMsg;
 import Messages.Packet;
 import Messages.RegistrationMsg;
 
-import javax.imageio.spi.RegisterableService;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +44,23 @@ public class RequestHandler implements Runnable {
                             history.get(channel).add(registrationMsg);
 
                             for(Client client : subscribers.get(channel)) {
-                                if(client.g)
+                                try {
+                                    // Send the appropriate message if the client is currently on this channel
+                                    if (client.getCurrentChannel().equals(channel)) {
+                                        // If this client is the person who just registered, send them the history of the channel their currently on
+                                        if (registrationMsg.getUsername().equals(client.getName())) {
+                                            ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(channel);
+                                            changeChannelMsg.setChatHistory(history.get(channel));
+                                        }
+                                        // If this client is not the person who just registered, just send them the message of who registered
+                                        else {
+                                            client.getOut().writeObject(p);
+                                        }
+                                    }
+                                }
+                                catch(IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                 }
