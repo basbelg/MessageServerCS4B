@@ -105,6 +105,7 @@ public class Client implements Runnable {
                         RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
 
                         name = registrationMsg.getUsername();
+                        currentChannel = registrationMsg.getStartingChannel();
                         channels = registrationMsg.getSubscribedChannels();
 
                         for(String channel : channels) {
@@ -121,7 +122,9 @@ public class Client implements Runnable {
                         break;
 
                     case "CNG-MSG" :
-                        ((ChangeChannelMsg) p.getData()).setSender(name);
+                        ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
+                        changeChannelMsg.setSender(name);
+                        currentChannel = changeChannelMsg.getSwappedChannel();
                         break;
 
                     default :
