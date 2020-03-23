@@ -26,7 +26,7 @@ public class RequestHandler implements Runnable {
         publishThread = new Thread(this);
         publishThread.start();
     }
-    
+
     @Override
     public void run() {
         try {

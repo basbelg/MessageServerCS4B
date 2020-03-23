@@ -55,9 +55,10 @@ public class Server implements Runnable {
             subscribers = (HashMap) synchronizedMap(new HashMap<String, List<Client>>());
             history = (HashMap) synchronizedMap(new HashMap<String, List<Serializable>>());
 
-            String[] courses = {"CS1A", "CS1B", "CS4A", "CS4B", "CS3A", "CS3B"}
+            String[] courses = {"CS1A", "CS1B", "CS4A", "CS4B", "CS3A", "CS3B"};
             for(int i = 0; i < courses.length; ++i) {
                 subscribers.put(courses[i], new ArrayList<Client>());
+                history.put(courses[i], new ArrayList<Serializable>());
             }
 
             serverPublishThread = new RequestHandler(requests, clients, subscribers, history);
