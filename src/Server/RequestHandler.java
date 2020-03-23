@@ -1,9 +1,6 @@
 package Server;
 
-import Messages.ChangeChannelMsg;
-import Messages.ChannelMsg;
-import Messages.Packet;
-import Messages.RegistrationMsg;
+import Messages.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,7 +44,7 @@ public class RequestHandler implements Runnable {
 
                                 for (Client client : subscribers.get(channel)) {
 
-                                    // Send the appropriate message if the client is currently on this channel
+                                    // Send the packet with an appropriate message if the client is currently on this channel
                                     if (client.getCurrentChannel().equals(channel)) {
                                         // If this client is the person who just registered, send them the history of the channel they're currently on
                                         if (registrationMsg.getUsername().equals(client.getName())) {
@@ -64,18 +61,50 @@ public class RequestHandler implements Runnable {
                             }
                             break;
 
-                    case "TXT-MSG":
-                        ChannelMsg channelMsg = (ChannelMsg) p.getData();
-                        String channel = channelMsg.getPublishToChannel();
+                        case "TXT-MSG":
+                            ChannelMsg channelMsg = (ChannelMsg) p.getData();
+                            String txtChannel = channelMsg.getPublishToChannel();
 
-                        history.get(channel).add(channelMsg);
+                            history.get(txtChannel).add(channelMsg);
 
-                        for (Client client : subscribers.get(channel)) {
-                            // Send the appropriate message if the client is currently on this channel
-                            if (client.getCurrentChannel().equals(channel)) {
-                                client.getOut().writeObject(p);
+                            for (Client client : subscribers.get(txtChannel)) {
+                                // Send the packet with an appropriate message if the client is currently on this channel
+                                if (client.getCurrentChannel().equals(txtChannel)) {
+                                    client.getOut().writeObject(p);
+                                }
                             }
-                        }
+                            break;
+
+                        case "PIC-MSG" :
+                            PictureMsg pictureMsg = (PictureMsg) p.getData();
+                            String picChannel = pictureMsg.getPublishToChannel();
+
+                            history.get(picChannel).add(pictureMsg);
+
+                            for (Client client : subscribers.get(picChannel)) {
+                                // Send the packet with an appropriate message if the client is currently on this channel
+                                if (client.getCurrentChannel().equals(picChannel)) {
+                                    client.getOut().writeObject(p);
+                                }
+                            }
+                            break;
+
+                        case "CNG-MSG" :
+                            ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
+
+                            changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
+
+                            for(Client client : clients) {
+                                // If this is the client who wants to change channels, send th
+                                if(client.getName().equals(changeChannelMsg.getSender())) {
+                                    client.getOut().writeObject(p);
+                                    break; //If the client who wants to change their channel is found, exit the loop
+                                }
+                            }
+                            break;
+
+                        default :
+                            System.out.println("RequestHandler - ERROR (No matching message type)");
                     }
                 }
                 catch(IOException e) {
