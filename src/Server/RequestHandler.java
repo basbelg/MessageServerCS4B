@@ -1,7 +1,9 @@
 package Server;
 
 import Messages.Packet;
+import Messages.RegistrationMsg;
 
+import javax.imageio.spi.RegisterableService;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +37,14 @@ public class RequestHandler implements Runnable {
 
                 switch(p.getType()) {
                     case "REG-MSG" :
+                        RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
 
+                        for(String channel : registrationMsg.getSubscribedChannels()) {
+                            history.get(channel).add(registrationMsg);
 
-                        for(String channel : channels) {
-                            subscribers.get(channel).add(this);
+                            for(Client client : subscribers.get(channel)) {
+                                if()
+                            }
                         }
                 }
             }

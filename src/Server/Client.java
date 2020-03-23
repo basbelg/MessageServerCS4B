@@ -12,6 +12,7 @@ import Messages.*;
 public class Client implements Runnable {
     // client info
     private String name;
+    private String currentChannel;
     private List<String> channels;
 
     // client thread
@@ -106,6 +107,9 @@ public class Client implements Runnable {
                         name = registrationMsg.getUsername();
                         channels = registrationMsg.getSubscribedChannels();
 
+                        for(String channel : channels) {
+                            subscribers.get(channel).add(this);
+                        }
                         break;
 
                     case "TXT-MSG" :
