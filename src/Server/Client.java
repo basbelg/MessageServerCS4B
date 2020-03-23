@@ -56,8 +56,6 @@ public class Client implements Runnable {
         }
     }
 
-    public void setName(String name) {this.name = name;}
-
     public void addSubscription(String channel) {
         channels.add(channel);
         subscribers.get(channel).add(this);
@@ -85,17 +83,6 @@ public class Client implements Runnable {
     }
 
     public void terminateConnection() {isConnected = false;}
-
-    public void sendPacket(Packet p) {
-        try {
-            // send packet to client
-            out.writeObject(p);
-
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void run() {

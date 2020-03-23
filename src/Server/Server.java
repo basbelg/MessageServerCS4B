@@ -36,16 +36,6 @@ public class Server implements Runnable {
 
     public void removeChannel(String channel) {subscribers.remove(channel);}
 
-    public void messageChannel(String channel, Packet p) {
-        for(Client client: subscribers.get(channel))
-            client.sendPacket(p);
-    }
-
-    public void messageAllClients(Packet p) {
-        for(Client client: clients)
-            client.sendPacket(p);
-    }
-
     @Override
     public void run() {
         try {
