@@ -17,6 +17,7 @@ public class Server implements Runnable {
     private BlockingQueue<Packet> requests;
     private int port;
     private boolean shutdown;
+    private String IP;
     private Socket socket;
     private ServerSocket serverSocket;
     private List<Client> clients;
@@ -39,12 +40,13 @@ public class Server implements Runnable {
 
     public int getPort() {return port;}
 
-    public InetAddress getIP() {return serverSocket.getInetAddress();}
+    public String getIP() {return IP;}
 
     @Override
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
+            IP = serverSocket.getInetAddress().toString();
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());
             subscribers = synchronizedMap(new HashMap<>());

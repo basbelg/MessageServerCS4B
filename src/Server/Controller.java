@@ -19,7 +19,7 @@ public class Controller {
         new Thread(server).start();
 
         serverPort.setText(server.getPort() + "");
-        serverIP.setText(server.getIP().toString());
+        serverIP.setText(server.getIP());
         serverStatus.setText("Online");
     }
 }
