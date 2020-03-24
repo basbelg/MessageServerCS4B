@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import Messages.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
 public class Client implements Runnable {
     // client info
@@ -86,6 +88,14 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        try {
+            Pane p = fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Controller controller = (Controller) fxmlLoader.getController();
+
         try {
             while(isConnected) {
                 // serve client until client disconnects
@@ -102,20 +112,25 @@ public class Client implements Runnable {
                         for(String channel : channels) {
                             subscribers.get(channel).add(this);
                         }
+
+                        controller.printMessage(registrationMsg.toString());
                         break;
 
                     case "TXT-MSG" :
                         ((ChannelMsg) p.getData()).setSender(name);
+                        controller.printMessage(p.getData().toString());
                         break;
 
                     case "PIC-MSG" :
                         ((PictureMsg) p.getData()).setSender(name);
+                        controller.printMessage(p.getData().toString());
                         break;
 
                     case "CNG-MSG" :
                         ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
                         changeChannelMsg.setSender(name);
                         currentChannel = changeChannelMsg.getSwappedChannel();
+                        controller.printMessage(p.getData().toString());
                         break;
 
                     default :

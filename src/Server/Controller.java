@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
+import javax.swing.*;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
@@ -16,6 +17,12 @@ public class Controller {
 
     private Server server;
     private Integer port;
+
+    public void printMessage(String message) {
+        SwingUtilities.invokeLater(() -> {
+            backlog.getItems().add(message);
+        });
+    }
 
     public void terminatePressed(MouseEvent mouseEvent) {
         server.terminateServer();
