@@ -25,8 +25,8 @@ public class Server implements Runnable {
     private Map<String, List<Serializable>> history;
     private RequestHandler serverPublishThread;
 
-    public Server() {
-        port = 8000;
+    public Server(int port) {
+        this.port = port;
         shutdown = false;
     }
 
@@ -46,7 +46,6 @@ public class Server implements Runnable {
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
-            IP = serverSocket.getInetAddress().toString();
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());
             subscribers = synchronizedMap(new HashMap<>());
@@ -54,8 +53,8 @@ public class Server implements Runnable {
 
             String[] courses = {"CS1A", "CS1B", "CS4A", "CS4B", "CS3A", "CS3B"};
             for(int i = 0; i < courses.length; ++i) {
-                subscribers.put(courses[i], new ArrayList<>());
-                history.put(courses[i], new ArrayList<>());
+                subscribers.put(courses[i], synchronizedList(new ArrayList<>()));
+                history.put(courses[i], synchronizedList(new ArrayList<>()));
             }
 
             serverPublishThread = new RequestHandler(requests, clients, subscribers, history);
