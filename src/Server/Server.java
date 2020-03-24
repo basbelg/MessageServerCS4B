@@ -2,6 +2,7 @@ package Server;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -35,6 +36,10 @@ public class Server implements Runnable {
     }
 
     public void removeChannel(String channel) {subscribers.remove(channel);}
+
+    public int getPort() {return port;}
+
+    public InetAddress getIP() {return serverSocket.getInetAddress();}
 
     @Override
     public void run() {
