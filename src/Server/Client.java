@@ -74,6 +74,8 @@ public class Client implements Runnable {
 
     public Thread getClientThread() {return clientThread;}
 
+    public Socket getSocket() {return socket;}
+
     public String getName() {
         return name;
     }
@@ -87,7 +89,6 @@ public class Client implements Runnable {
     }
 
     public void terminateConnection() {
-        System.out.println("terminate method entered");
         clientThread.interrupt();
         try {
             in.close();
@@ -145,7 +146,7 @@ public class Client implements Runnable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("client removed");
+            System.out.println("client removed: " + name);
             clients.remove(this);
             for(String channel: channels)
                 subscribers.get(channel).remove(this);

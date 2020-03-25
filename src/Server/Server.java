@@ -1,25 +1,23 @@
 package Server;
 
+import Messages.Packet;
+import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import static java.util.Collections.*;
-
-import Messages.Packet;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
-
-import javax.swing.*;
+import static java.util.Collections.synchronizedList;
+import static java.util.Collections.synchronizedMap;
 
 public class Server implements Runnable {
     private BlockingQueue<Packet> requests;
     private int port;
+    private int numOfClients;
     private boolean shutdown;
     private Thread thread;
     private Socket socket;
@@ -32,6 +30,7 @@ public class Server implements Runnable {
 
     public Server(int port) {
         this.port = port;
+        numOfClients = 0;
         shutdown = false;
 
         thread = new Thread(this);
@@ -82,23 +81,33 @@ public class Server implements Runnable {
 
             while(!shutdown) {
                 // wait on client connection
-                System.out.println("socket accepted");
                 socket = serverSocket.accept();
+                System.out.println("socket accepted: " + socket.toString());
 
                 // manage client connection
-                clients.add(new Client(socket, requests, clients, subscribers, controller));
+                // elements duplicated here for an unknown reason
+                clients.add(/*numOfClients,*/ new Client(socket, requests, clients, subscribers, controller));
 
-                System.out.println(clients.size());
-                controller.setConnectedClients(10); //clients.size());
+//                System.out.println(numOfClients);
+//                System.out.println(clients.size());
+//                synchronized (clients) {
+//                    Iterator i = clients.iterator();
+//                    while(i.hasNext())
+//                        System.out.println(((Client) i.next()).getSocket().toString());
+//                }
+
+                controller.setConnectedClients(++numOfClients);
             }
         } catch(IOException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("server thread terminated");
             synchronized (clients) {
-                for (Client client : clients)
-                    client.terminateConnection();
-                serverPublishThread.getPublishThread().interrupt();
+                Iterator i = clients.iterator();
+                while(i.hasNext())
+                    ((Client)i.next()).terminateConnection();
             }
+            serverPublishThread.getPublishThread().interrupt();
         }
     }
 }
