@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/RequestHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +212,7 @@
       <workItem from="1585096685396" duration="9584000" />
       <workItem from="1585110818928" duration="114000" />
       <workItem from="1585110989481" duration="533000" />
-      <workItem from="1585111713111" duration="7671000" />
+      <workItem from="1585111713111" duration="7931000" />
     </task>
     <servers />
   </component>
