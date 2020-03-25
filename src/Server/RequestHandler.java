@@ -96,9 +96,7 @@ public class RequestHandler implements Runnable {
 
                         case "CNG-MSG":
                             ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
-                            System.out.println(history.get(changeChannelMsg.getSwappedChannel()).size());
                             changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
-                            System.out.println(changeChannelMsg.getChatHistory().size());
                             // If this is the client who wants to change channels, send th
                             for (Client client : clients)
                                 if (client.getName().equals(changeChannelMsg.getSender())) {
