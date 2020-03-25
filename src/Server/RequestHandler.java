@@ -45,23 +45,25 @@ public class RequestHandler implements Runnable {
                             RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
 
                             synchronized (history) {
-                                for (String channel : registrationMsg.getSubscribedChannels())
+                                for (String channel : registrationMsg.getSubscribedChannels()) {
                                     history.get(channel).add(registrationMsg);
-                            }
 
-                            for (Client client : subscribers.get(registrationMsg.getStartingChannel())) {
-                                // Send the packet with an appropriate message if the client is currently on this channel
-                                if (client.getCurrentChannel().equals(registrationMsg.getStartingChannel())) {
-                                    client.getOut().writeObject(p);
+                                    for (Client client : subscribers.get(channel)) {
+                                        // Send the packet with an appropriate message if the client is currently on this channel
+                                        if (client.getCurrentChannel().equals(channel)) {
+                                            client.getOut().writeObject(p);
 
-                                    // If this client is the person who just registered, send them the history of the channel they're currently on
-                                    if (registrationMsg.getUsername().equals(client.getName())) {
-                                        ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(registrationMsg.getStartingChannel());
-                                        changeChannelMsg.setChatHistory(history.get(registrationMsg.getStartingChannel()));
-                                        client.getOut().writeObject(new Packet("CNG-MSG", changeChannelMsg));
+                                            // If this client is the person who just registered, send them the history of the channel they're currently on
+                                            if (registrationMsg.getUsername().equals(client.getName())) {
+                                                ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(channel);
+                                                changeChannelMsg.setChatHistory(history.get(channel));
+                                                client.getOut().writeObject(new Packet("CNG-MSG", changeChannelMsg));
+                                            }
+                                        }
                                     }
                                 }
                             }
+
                             break;
 
                         case "TXT-MSG":
@@ -78,7 +80,7 @@ public class RequestHandler implements Runnable {
                                     client.getOut().writeObject(p);
                             break;
 
-                        case "PIC-MSG" :
+                        case "PIC-MSG":
                             PictureMsg pictureMsg = (PictureMsg) p.getData();
                             String picChannel = pictureMsg.getPublishToChannel();
 
@@ -92,25 +94,26 @@ public class RequestHandler implements Runnable {
                                     client.getOut().writeObject(p);
                             break;
 
-                        case "CNG-MSG" :
+                        case "CNG-MSG":
                             ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
                             System.out.println(history.get(changeChannelMsg.getSwappedChannel()).size());
                             changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
-
+                            System.out.println(changeChannelMsg.getChatHistory().size());
                             // If this is the client who wants to change channels, send th
                             for (Client client : clients)
                                 if (client.getName().equals(changeChannelMsg.getSender())) {
+                                    client.getOut().reset();
                                     client.getOut().writeObject(p);
                                     break; //If the client who wants to change their channel is found, exit the loop
                                 }
                             break;
 
-                        default :
+                        default:
                             System.out.println("RequestHandler - ERROR (No matching message type)");
                     }
                 }
-                catch(IOException e) {
-                    e.printStackTrace();
+                catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
