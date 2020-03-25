@@ -1,7 +1,7 @@
 package Server;
 
 import Messages.Packet;
-import javafx.fxml.FXMLLoader;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -28,10 +28,11 @@ public class Server implements Runnable {
     private RequestHandler serverPublishThread;
     private Controller controller;
 
-    public Server(int port) {
+    public Server(int port, Controller controller) {
         this.port = port;
         numOfClients = 0;
         shutdown = false;
+        this.controller = controller;
 
         thread = new Thread(this);
         thread.start();
@@ -46,9 +47,7 @@ public class Server implements Runnable {
         }
     }
 
-    public void addChannel(String channel) {
-        subscribers.putIfAbsent(channel, synchronizedList(new ArrayList<>()));
-    }
+    public void addChannel(String channel) {subscribers.putIfAbsent(channel, synchronizedList(new ArrayList<>()));}
 
     public void removeChannel(String channel) {subscribers.remove(channel);}
 
@@ -57,14 +56,6 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
-                controller = (Controller) fxmlLoader.getController();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             serverSocket = new ServerSocket(port);
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());

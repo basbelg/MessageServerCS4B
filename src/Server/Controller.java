@@ -1,5 +1,6 @@
 package Server;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -19,15 +20,15 @@ public class Controller {
     private Integer port;
 
     public void printMessage(String message) {
-        SwingUtilities.invokeLater(() -> {
+        Platform.runLater(() -> {
             backlog.getItems().add(new Label(message));
         });
     }
 
     public void setConnectedClients(int num) {
-        //SwingUtilities.invokeLater(() -> {
+        Platform.runLater(()-> {
             connectedClients.setText(num + "");
-        //});
+        });
     }
 
     public void terminatePressed(MouseEvent mouseEvent) {
@@ -46,6 +47,6 @@ public class Controller {
             e.printStackTrace();
         }
         serverStatus.setText("Online");
-        server = new Server(port);
+        server = new Server(port, this);
     }
 }

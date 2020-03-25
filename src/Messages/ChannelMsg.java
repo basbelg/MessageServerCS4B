@@ -25,7 +25,7 @@ public class ChannelMsg implements Serializable {
         return sender;
     }
 
-    public String toString() {return "In " + publishToChannel + ": " + sender + ": " + "\"" + textMsg + "\"";}
+    public String toString() {return sender + " wrote: \"" + textMsg + "\" in " + publishToChannel;}
 
     public void setTextMsg(String textMsg) {
         this.textMsg = textMsg;
