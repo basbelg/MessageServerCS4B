@@ -31,7 +31,9 @@ public class Client implements Runnable {
     private List<Client> clients;
     private Map<String, List<Client>> subscribers;
 
-    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers) {
+    private Controller controller;
+
+    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers, Controller controller) {
         try {
             // set client info
             this.name = "guest";
@@ -44,6 +46,7 @@ public class Client implements Runnable {
             out = new ObjectOutputStream(socket.getOutputStream());
 
             // set server info
+            this.controller = controller;
             this.requests = requests;
             this.clients = clients;
             this.subscribers = subscribers;
@@ -88,14 +91,6 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        try {
-            Pane p = fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Controller controller = (Controller) fxmlLoader.getController();
-
         try {
             while(isConnected) {
                 // serve client until client disconnects

@@ -6,6 +6,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CS4B-MessageServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS4B-MessageServer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Server.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,9 +103,11 @@
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MessageClientCS4B" />
     <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -208,6 +216,10 @@
       <workItem from="1584993181689" duration="1065000" />
       <workItem from="1585011048070" duration="5552000" />
       <workItem from="1585098009522" duration="4780000" />
+      <workItem from="1585011048070" duration="9148000" />
+      <workItem from="1585021017901" duration="1133000" />
+      <workItem from="1585022558239" duration="2309000" />
+      <workItem from="1585096685396" duration="4370000" />
     </task>
     <servers />
   </component>
@@ -232,10 +244,10 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="630" y="284" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585011191561">
+    <state x="630" y="284" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585100788550">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="630" y="284" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1585011191561" />
+    <state x="630" y="284" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1585100788550" />
     <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser" timestamp="1583960001628">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -244,29 +256,37 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1119" y="840" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1585011227355" />
-    <state x="882" y="370" key="FileChooserDialogImpl" timestamp="1585011206828">
+    <state x="882" y="370" key="FileChooserDialogImpl" timestamp="1585096880506">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="882" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1585011206828" />
-    <state width="1236" height="256" key="GridCell.Tab.0.bottom" timestamp="1585016629469">
+    <state x="882" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1585096880506" />
+    <state width="1234" height="117" key="GridCell.Tab.0.bottom" timestamp="1585101254232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1236" height="256" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1585016629469" />
-    <state width="1236" height="256" key="GridCell.Tab.0.center" timestamp="1585016629469">
+    <state width="1234" height="117" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1585101254232" />
+    <state width="1234" height="117" key="GridCell.Tab.0.center" timestamp="1585101254232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1236" height="256" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1585016629469" />
-    <state width="1236" height="256" key="GridCell.Tab.0.left" timestamp="1585016629469">
+    <state width="1234" height="117" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1585101254232" />
+    <state width="1234" height="117" key="GridCell.Tab.0.left" timestamp="1585101254232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1236" height="256" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1585016629469" />
-    <state width="1236" height="256" key="GridCell.Tab.0.right" timestamp="1585016629469">
+    <state width="1234" height="117" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1585101254232" />
+    <state width="1234" height="117" key="GridCell.Tab.0.right" timestamp="1585101254232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1236" height="256" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1585016629469" />
-    <state x="656" y="203" key="SettingsEditor" timestamp="1585011355039">
+    <state width="1234" height="117" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1585101254232" />
+    <state x="656" y="203" key="SettingsEditor" timestamp="1585100772315">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="656" y="203" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1585011355039" />
+    <state x="656" y="203" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1585100772315" />
+    <state x="892" y="477" key="com.intellij.ide.util.TipDialog" timestamp="1585096723182">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="892" y="477" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1585096723182" />
+    <state x="357" y="592" key="new project wizard" timestamp="1585021879383">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="357" y="592" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1585021879383" />
   </component>
 </project>
