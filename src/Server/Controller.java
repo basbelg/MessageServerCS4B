@@ -25,9 +25,9 @@ public class Controller {
     }
 
     public void setConnectedClients(int num) {
-        SwingUtilities.invokeLater(() -> {
+        //SwingUtilities.invokeLater(() -> {
             connectedClients.setText(num + "");
-        });
+        //});
     }
 
     public void terminatePressed(MouseEvent mouseEvent) {
@@ -39,15 +39,13 @@ public class Controller {
 
     public void launchPressed(MouseEvent mouseEvent) {
         port = (port == null)? 8000: port + 1;
-        server = new Server(port);
-        new Thread(server).start();
-
-        serverPort.setText(server.getPort() + "");
+        serverPort.setText(port + "");
         try {
             serverIP.setText(Inet4Address.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
         serverStatus.setText("Online");
+        server = new Server(port);
     }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -14,10 +15,13 @@ import Messages.Packet;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+import javax.swing.*;
+
 public class Server implements Runnable {
     private BlockingQueue<Packet> requests;
     private int port;
     private boolean shutdown;
+    private Thread thread;
     private Socket socket;
     private ServerSocket serverSocket;
     private List<Client> clients;
@@ -29,9 +33,19 @@ public class Server implements Runnable {
     public Server(int port) {
         this.port = port;
         shutdown = false;
+
+        thread = new Thread(this);
+        thread.start();
     }
 
-    public void terminateServer() {shutdown = true;}
+    public synchronized void terminateServer() {
+        shutdown = true;
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void addChannel(String channel) {
         subscribers.putIfAbsent(channel, synchronizedList(new ArrayList<>()));
@@ -44,13 +58,13 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
             try {
-                Pane p = fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
+                controller = (Controller) fxmlLoader.getController();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            controller = (Controller) fxmlLoader.getController();
 
             serverSocket = new ServerSocket(port);
             requests = new ArrayBlockingQueue<>(512);
@@ -68,19 +82,23 @@ public class Server implements Runnable {
 
             while(!shutdown) {
                 // wait on client connection
+                System.out.println("socket accepted");
                 socket = serverSocket.accept();
 
                 // manage client connection
                 clients.add(new Client(socket, requests, clients, subscribers, controller));
-                controller.setConnectedClients(clients.size());
+
+                System.out.println(clients.size());
+                controller.setConnectedClients(10); //clients.size());
             }
-        }
-        catch(IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            for(Client client: clients)
-                client.terminateConnection();
+        } finally {
+            synchronized (clients) {
+                for (Client client : clients)
+                    client.terminateConnection();
+                serverPublishThread.getPublishThread().interrupt();
+            }
         }
     }
 }

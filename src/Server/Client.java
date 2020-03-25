@@ -2,14 +2,13 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import Messages.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 
 public class Client implements Runnable {
     // client info
@@ -87,67 +86,69 @@ public class Client implements Runnable {
         return out;
     }
 
-    public void terminateConnection() {isConnected = false;}
+    public void terminateConnection() {
+        System.out.println("terminate method entered");
+        clientThread.interrupt();
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void run() {
         try {
-            while(isConnected) {
+            while(!clientThread.isInterrupted()) {
                 // serve client until client disconnects
-                //in = new ObjectInputStream(socket.getInputStream());
                 Packet p = (Packet) in.readObject();
 
-                switch(p.getType()) {
-                    case "REG-MSG" :
+                switch (p.getType()) {
+                    case "REG-MSG":
                         RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
 
                         name = registrationMsg.getUsername();
                         currentChannel = registrationMsg.getStartingChannel();
                         channels = registrationMsg.getSubscribedChannels();
 
-                        for(String channel : channels) {
+                        for (String channel : channels)
                             subscribers.get(channel).add(this);
-                        }
 
                         controller.printMessage(registrationMsg.toString());
                         break;
 
-                    case "TXT-MSG" :
+                    case "TXT-MSG":
                         ((ChannelMsg) p.getData()).setSender(name);
                         controller.printMessage(p.getData().toString());
                         break;
 
-                    case "PIC-MSG" :
+                    case "PIC-MSG":
                         ((PictureMsg) p.getData()).setSender(name);
                         controller.printMessage(p.getData().toString());
                         break;
 
-                    case "CNG-MSG" :
+                    case "CNG-MSG":
                         ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
                         changeChannelMsg.setSender(name);
                         currentChannel = changeChannelMsg.getSwappedChannel();
                         controller.printMessage(p.getData().toString());
                         break;
 
-                    default :
+                    default:
                         System.out.println("ERROR");
                 }
-
                 requests.add(p);
             }
         }
-        catch(IOException | ClassNotFoundException e) {
+        catch(ClosedByInterruptException e) {
             e.printStackTrace();
-        }
-        finally {
-            removeConnection();
-        }
-    }
-
-    private void removeConnection() {
-        clients.remove(this);
-        for(String channel: channels) {
-            subscribers.get(channel).remove(this);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("client removed");
+            clients.remove(this);
+            for(String channel: channels)
+                subscribers.get(channel).remove(this);
         }
     }
 }

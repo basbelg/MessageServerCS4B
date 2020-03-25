@@ -29,10 +29,14 @@ public class RequestHandler implements Runnable {
         publishThread.start();
     }
 
+    public Thread getPublishThread() {
+        return publishThread;
+    }
+
     @Override
     public void run() {
         try {
-            while(keepPublishing) {
+            while(!publishThread.isInterrupted()) {
                 Packet p = requests.take();
 
                 try {
