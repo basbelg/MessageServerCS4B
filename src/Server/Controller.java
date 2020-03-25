@@ -1,5 +1,6 @@
 package Server;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -19,13 +20,13 @@ public class Controller {
     private Integer port;
 
     public void printMessage(String message) {
-        SwingUtilities.invokeLater(() -> {
+        Platform.runLater(() -> {
             backlog.getItems().add(new Label(message));
         });
     }
 
     public void setConnectedClients(int num) {
-        SwingUtilities.invokeLater(() -> {
+        Platform.runLater(()-> {
             connectedClients.setText(num + "");
         });
     }
@@ -39,15 +40,13 @@ public class Controller {
 
     public void launchPressed(MouseEvent mouseEvent) {
         port = (port == null)? 8000: port + 1;
-        server = new Server(port);
-        new Thread(server).start();
-
-        serverPort.setText(server.getPort() + "");
+        serverPort.setText(port + "");
         try {
             serverIP.setText(Inet4Address.getLocalHost().getHostAddress());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
         serverStatus.setText("Online");
+        server = new Server(port, this);
     }
 }

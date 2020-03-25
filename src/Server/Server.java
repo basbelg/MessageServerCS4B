@@ -1,5 +1,7 @@
 package Server;
 
+import Messages.Packet;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.ServerSocket;
@@ -8,16 +10,15 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import static java.util.Collections.*;
-
-import Messages.Packet;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
+import static java.util.Collections.synchronizedList;
+import static java.util.Collections.synchronizedMap;
 
 public class Server implements Runnable {
     private BlockingQueue<Packet> requests;
     private int port;
+    private int count;
     private boolean shutdown;
+    private Thread thread;
     private Socket socket;
     private ServerSocket serverSocket;
     private List<Client> clients;
@@ -26,16 +27,26 @@ public class Server implements Runnable {
     private RequestHandler serverPublishThread;
     private Controller controller;
 
-    public Server(int port) {
+    public Server(int port, Controller controller) {
         this.port = port;
+        count = 0;
         shutdown = false;
+        this.controller = controller;
+
+        thread = new Thread(this);
+        thread.start();
     }
 
-    public void terminateServer() {shutdown = true;}
-
-    public void addChannel(String channel) {
-        subscribers.putIfAbsent(channel, synchronizedList(new ArrayList<>()));
+    public synchronized void terminateServer() {
+        shutdown = true;
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void addChannel(String channel) {subscribers.putIfAbsent(channel, synchronizedList(new ArrayList<>()));}
 
     public void removeChannel(String channel) {subscribers.remove(channel);}
 
@@ -44,14 +55,6 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            try {
-                Pane p = fxmlLoader.load(getClass().getResource("ServerUI.fxml").openStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            controller = (Controller) fxmlLoader.getController();
-
             serverSocket = new ServerSocket(port);
             requests = new ArrayBlockingQueue<>(512);
             clients = synchronizedList(new ArrayList<Client>());
@@ -69,18 +72,32 @@ public class Server implements Runnable {
             while(!shutdown) {
                 // wait on client connection
                 socket = serverSocket.accept();
+                System.out.println("socket accepted: " + socket.toString());
 
                 // manage client connection
-                clients.add(new Client(socket, requests, clients, subscribers, controller));
-                controller.setConnectedClients(clients.size());
+                // elements duplicated here for an unknown reason
+                clients.add(/*count,*/ new Client(socket, requests, clients, subscribers, controller));
+
+//                System.out.println(count);
+//                System.out.println(clients.size());
+//                synchronized (clients) {
+//                    Iterator i = clients.iterator();
+//                    while(i.hasNext())
+//                        System.out.println(((Client) i.next()).getSocket().toString());
+//                }
+
+                controller.setConnectedClients(++count);
             }
-        }
-        catch(IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            for(Client client: clients)
-                client.terminateConnection();
+        } finally {
+            System.out.println("server thread terminated");
+            synchronized (clients) {
+                Iterator i = clients.iterator();
+                while(i.hasNext())
+                    ((Client)i.next()).terminateConnection();
+            }
+            serverPublishThread.getPublishThread().interrupt();
         }
     }
 }
