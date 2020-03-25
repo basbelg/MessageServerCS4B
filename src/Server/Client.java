@@ -122,7 +122,6 @@ public class Client implements Runnable {
 
                     case "TXT-MSG":
                         ((ChannelMsg) p.getData()).setSender(name);
-                        System.out.println(p.getData().toString());
                         controller.printMessage(p.getData().toString());
                         break;
 
