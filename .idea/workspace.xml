@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" afterDir="false" />
@@ -12,7 +13,11 @@
       <change beforePath="$PROJECT_DIR$/src/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Server.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/Server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/RequestHandler.java" afterDir="false" />
+>>>>>>> 6c7bd51bd584e02dbda1bf73a6b38e1edd4a6b2d
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,13 +112,19 @@
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -126,10 +137,16 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Server.Main" />
       <module name="CS4B-MessageServer" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Smart\Documents\javafx-sdk-13.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\basbe\Downloads\openjfx-13.0.2_windows-x64_bin-sdk\javafx-sdk-13.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Server.*" />
@@ -200,10 +217,21 @@
       <workItem from="1583953446815" duration="6617000" />
       <workItem from="1584951425756" duration="2424000" />
       <workItem from="1584993181689" duration="1065000" />
+      <workItem from="1585011048070" duration="5552000" />
+      <workItem from="1585098009522" duration="4780000" />
       <workItem from="1585011048070" duration="9148000" />
       <workItem from="1585021017901" duration="1133000" />
       <workItem from="1585022558239" duration="2309000" />
+<<<<<<< HEAD
       <workItem from="1585096685396" duration="28071000" />
+=======
+      <workItem from="1585096685396" duration="4370000" />
+      <workItem from="1585105239491" duration="718000" />
+      <workItem from="1585096685396" duration="9584000" />
+      <workItem from="1585110818928" duration="114000" />
+      <workItem from="1585110989481" duration="533000" />
+      <workItem from="1585111713111" duration="7671000" />
+>>>>>>> 6c7bd51bd584e02dbda1bf73a6b38e1edd4a6b2d
     </task>
     <servers />
   </component>
