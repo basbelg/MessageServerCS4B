@@ -94,7 +94,6 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MessageClientCS4B" />
-    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -216,7 +215,7 @@
       <workItem from="1585096685396" duration="9584000" />
       <workItem from="1585110818928" duration="114000" />
       <workItem from="1585110989481" duration="533000" />
-      <workItem from="1585111713111" duration="3152000" />
+      <workItem from="1585111713111" duration="7671000" />
     </task>
     <servers />
   </component>
