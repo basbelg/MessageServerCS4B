@@ -20,7 +20,13 @@ public class Controller {
 
     public void printMessage(String message) {
         SwingUtilities.invokeLater(() -> {
-            backlog.getItems().add(message);
+            backlog.getItems().add(new Label(message));
+        });
+    }
+
+    public void setConnectedClients(int num) {
+        SwingUtilities.invokeLater(() -> {
+            connectedClients.setText(num + "");
         });
     }
 
@@ -28,6 +34,7 @@ public class Controller {
         server.terminateServer();
         serverPort.setText("0");
         serverStatus.setText("Offline");
+        connectedClients.setText("0");
     }
 
     public void launchPressed(MouseEvent mouseEvent) {
