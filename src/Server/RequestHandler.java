@@ -44,6 +44,7 @@ public class RequestHandler implements Runnable {
                                 history.get(channel).add(registrationMsg);
 
                                 for (Client client : subscribers.get(channel)) {
+                                    client.getOut().writeObject(p);
 
                                     // Send the packet with an appropriate message if the client is currently on this channel
                                     if (client.getCurrentChannel().equals(channel)) {
@@ -52,10 +53,6 @@ public class RequestHandler implements Runnable {
                                             ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(channel);
                                             changeChannelMsg.setChatHistory(history.get(channel));
                                             client.getOut().writeObject(new Packet("CNG-MSG", changeChannelMsg));
-                                        }
-                                        // If this client is not the person who just registered, just send them the message of who registered
-                                        else {
-                                            client.getOut().writeObject(p);
                                         }
                                     }
                                 }
