@@ -15,6 +15,7 @@ public class Client implements Runnable {
     private String name;
     private String currentChannel;
     private List<String> channels;
+    private int count;
 
     // client thread
     private Thread clientThread;
@@ -36,6 +37,7 @@ public class Client implements Runnable {
         try {
             // set client info
             this.name = "guest";
+            this.count = count;
             channels = new ArrayList<>();
 
             // set connection info
@@ -148,9 +150,13 @@ public class Client implements Runnable {
             e.printStackTrace();
         } finally {
             System.out.println("client removed: " + name);
-            clients.remove(this);
-            for(String channel: channels)
-                subscribers.get(channel).remove(this);
+            synchronized (clients) {
+                clients.remove(this);
+            }
+            synchronized (subscribers) {
+                for(String channel: channels)
+                    subscribers.get(channel).remove(this);
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package Server;
 
 import Messages.Packet;
-import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,7 +16,7 @@ import static java.util.Collections.synchronizedMap;
 public class Server implements Runnable {
     private BlockingQueue<Packet> requests;
     private int port;
-    private int numOfClients;
+    private int count;
     private boolean shutdown;
     private Thread thread;
     private Socket socket;
@@ -30,7 +29,7 @@ public class Server implements Runnable {
 
     public Server(int port, Controller controller) {
         this.port = port;
-        numOfClients = 0;
+        count = 0;
         shutdown = false;
         this.controller = controller;
 
@@ -77,9 +76,9 @@ public class Server implements Runnable {
 
                 // manage client connection
                 // elements duplicated here for an unknown reason
-                clients.add(/*numOfClients,*/ new Client(socket, requests, clients, subscribers, controller));
+                clients.add(/*count,*/ new Client(socket, requests, clients, subscribers, controller));
 
-//                System.out.println(numOfClients);
+//                System.out.println(count);
 //                System.out.println(clients.size());
 //                synchronized (clients) {
 //                    Iterator i = clients.iterator();
@@ -87,7 +86,7 @@ public class Server implements Runnable {
 //                        System.out.println(((Client) i.next()).getSocket().toString());
 //                }
 
-                controller.setConnectedClients(++numOfClients);
+                controller.setConnectedClients(++count);
             }
         } catch(IOException e) {
             e.printStackTrace();
