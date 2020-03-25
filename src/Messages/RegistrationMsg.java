@@ -22,6 +22,8 @@ public class RegistrationMsg implements Serializable {
         return startingChannel;
     }
 
+    public String toString() {return username + " subscribed to " + startingChannel;}
+
     public List<String> getSubscribedChannels() {
         return subscribedChannels;
     }
