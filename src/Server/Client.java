@@ -94,6 +94,7 @@ public class Client implements Runnable {
         try {
             while(isConnected) {
                 // serve client until client disconnects
+                //in = new ObjectInputStream(socket.getInputStream());
                 Packet p = (Packet) in.readObject();
 
                 switch(p.getType()) {

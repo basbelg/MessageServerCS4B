@@ -66,6 +66,8 @@ public class RequestHandler implements Runnable {
                             ChannelMsg channelMsg = (ChannelMsg) p.getData();
                             String txtChannel = channelMsg.getPublishToChannel();
 
+                            System.out.println(txtChannel);
+
                             history.get(txtChannel).add(channelMsg);
 
                             for (Client client : subscribers.get(txtChannel)) {
