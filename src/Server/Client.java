@@ -2,6 +2,7 @@ package Server;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,9 @@ import Messages.*;
 public class Client implements Runnable {
     // client info
     private String name;
-    private String currentChannel;
-    private List<String> channels;
+    private List<String> allChannels;
+    private List<String> subscribedChannels;
+    private int count;
 
     // client thread
     private Thread clientThread;
@@ -29,11 +31,15 @@ public class Client implements Runnable {
     private List<Client> clients;
     private Map<String, List<Client>> subscribers;
 
-    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers) {
+    private Controller controller;
+
+    public Client(Socket socket, BlockingQueue<Packet> requests, List<Client> clients, Map<String, List<Client>> subscribers, Controller controller, List<String> allChannels) {
         try {
             // set client info
             this.name = "guest";
-            channels = new ArrayList<>();
+            this.count = count;
+            subscribedChannels = new ArrayList<>();
+            this.allChannels = allChannels;
 
             // set connection info
             isConnected = true;
@@ -42,6 +48,7 @@ public class Client implements Runnable {
             out = new ObjectOutputStream(socket.getOutputStream());
 
             // set server info
+            this.controller = controller;
             this.requests = requests;
             this.clients = clients;
             this.subscribers = subscribers;
@@ -57,86 +64,94 @@ public class Client implements Runnable {
     }
 
     public void addSubscription(String channel) {
-        channels.add(channel);
+        subscribedChannels.add(channel);
         subscribers.get(channel).add(this);
     }
 
     public void removeSubscription(String channel) {
-        channels.remove(channel);
+        subscribedChannels.remove(channel);
         subscribers.get(channel).remove(this);
     }
 
-    public final boolean isSubscribed(String channel) {return channels.contains(channel);}
+    public final boolean isSubscribed(String channel) {return subscribedChannels.contains(channel);}
 
     public Thread getClientThread() {return clientThread;}
 
+    public Socket getSocket() {return socket;}
+
     public String getName() {
         return name;
-    }
-
-    public String getCurrentChannel() {
-        return currentChannel;
     }
 
     public ObjectOutputStream getOut() {
         return out;
     }
 
-    public void terminateConnection() {isConnected = false;}
+    public void terminateConnection() {
+        clientThread.interrupt();
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void run() {
         try {
-            while(isConnected) {
+            while(!clientThread.isInterrupted()) {
                 // serve client until client disconnects
                 Packet p = (Packet) in.readObject();
 
-                switch(p.getType()) {
-                    case "REG-MSG" :
+                switch (p.getType()) {
+                    case "REG-MSG":
                         RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
 
                         name = registrationMsg.getUsername();
-                        currentChannel = registrationMsg.getStartingChannel();
-                        channels = registrationMsg.getSubscribedChannels();
+                        registrationMsg.setChannels(allChannels);
 
-                        for(String channel : channels) {
-                            subscribers.get(channel).add(this);
-                        }
+                        controller.printMessage(registrationMsg.toString());
                         break;
 
-                    case "TXT-MSG" :
+                    case "TXT-MSG":
                         ((ChannelMsg) p.getData()).setSender(name);
+                        controller.printMessage(p.getData().toString());
                         break;
 
-                    case "PIC-MSG" :
+                    case "PIC-MSG":
                         ((PictureMsg) p.getData()).setSender(name);
+                        controller.printMessage(p.getData().toString());
                         break;
 
-                    case "CNG-MSG" :
-                        ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
-                        changeChannelMsg.setSender(name);
-                        currentChannel = changeChannelMsg.getSwappedChannel();
+                    case "CRT-MSG":
+                        ((CreateChannelMsg) p.getData()).setChannelOwner(name);
+                        controller.printMessage(p.getData().toString());
                         break;
 
-                    default :
+                    case "JNC-MSG":
+                        ((JoinChannelMsg) p.getData()).setSender(name);
+                        controller.printMessage(p.getData().toString());
+                        break;
+
+                    default:
                         System.out.println("ERROR");
                 }
-
                 requests.add(p);
             }
         }
-        catch(IOException | ClassNotFoundException e) {
+        catch(ClosedByInterruptException e) {
             e.printStackTrace();
-        }
-        finally {
-            removeConnection();
-        }
-    }
-
-    private void removeConnection() {
-        clients.remove(this);
-        for(String channel: channels) {
-            subscribers.get(channel).remove(this);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("client removed: " + name);
+            synchronized (clients) {
+                clients.remove(this);
+            }
+            synchronized (subscribers) {
+                for(String channel: subscribedChannels)
+                    subscribers.get(channel).remove(this);
+            }
         }
     }
 }
