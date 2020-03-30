@@ -113,8 +113,18 @@ public class RequestHandler implements Runnable {
                             break;
 
                         case "JNC-MSG":
-
-
+                            JoinChannelMsg jm = (JoinChannelMsg) p.getData();
+                            jm.setChatHistory(history.get(jm.getJoinChannel()));
+                            NewUserMsg num = new NewUserMsg(jm.getSender(), jm.getJoinChannel());
+                            history.get(jm.getJoinChannel()).add(num);
+                            for(Client client : subscribers.get(jm.getJoinChannel()))
+                            {
+                                if(client.getName().equals(jm.getSender()))
+                                {
+                                    client.getOut().writeObject(p);
+                                }
+                                client.getOut().writeObject(new Packet("NWU-MSG", num));
+                            }
                             break;
 
                         default:

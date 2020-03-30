@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-=======
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CS4B-MessageServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS4B-MessageServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChangeChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChangeChannelMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChangeChannelMsg.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChannelMsg.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/Packet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/PictureMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/PictureMsg.class" afterDir="false" />
@@ -22,13 +15,23 @@
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/RequestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/RequestHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/ChangeChannelMsg.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/ChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/ChannelMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/CreateChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/CreateChannelMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/JoinChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/JoinChannelMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/NewUserMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/NewUserMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/Packet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/PictureMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/PictureMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/RegistrationMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/Messages/RegistrationMsg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/BaseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/chatrooms.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/chatrooms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/RequestHandler.java" afterDir="false" />
     </list>
->>>>>>> ae3744135fdb88bb4a1787e07b7e4323a36891a8
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,24 +119,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-<<<<<<< HEAD
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/openjfx-12.0.2_windows-x64_bin-sdk/javafx-sdk-12.0.2/lib" />
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MessageClientCS4B" />
->>>>>>> ae3744135fdb88bb4a1787e07b7e4323a36891a8
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -146,14 +151,16 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Server.Main" />
       <module name="CS4B-MessageServer" />
-<<<<<<< HEAD
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\jtols\Downloads\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-=======
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\Smart\Documents\javafx-sdk-13.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
->>>>>>> ae3744135fdb88bb4a1787e07b7e4323a36891a8
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Server.*" />
@@ -244,14 +251,8 @@
       <workItem from="1585156923255" duration="4125000" />
       <workItem from="1584993181689" duration="1474000" />
       <workItem from="1585015477766" duration="271000" />
-<<<<<<< HEAD
       <workItem from="1585105406873" duration="168000" />
-=======
-      <workItem from="1585163970582" duration="522000" />
-      <workItem from="1585164820526" duration="6610000" />
-      <workItem from="1585186395930" duration="3666000" />
-      <workItem from="1585579952249" duration="440000" />
->>>>>>> ae3744135fdb88bb4a1787e07b7e4323a36891a8
+      <workItem from="1585607264574" duration="313000" />
     </task>
     <servers />
   </component>
