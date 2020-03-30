@@ -8,7 +8,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="598.0">
             <children>
                 <Label fx:id="channelLabel" layoutX="25.0" layoutY="65.0" text="Chat Name:" />
-                <Label layoutX="25.0" layoutY="48.0" text="Server:" />
+                <Label fx:id="serverLabel" layoutX="25.0" layoutY="48.0" text="Server:" />
                 <ComboBox fx:id="chatroomsBar" layoutX="376.0" layoutY="57.0" prefWidth="150.0" promptText="Chatrooms" />
                 <Button fx:id="swapChatroomsButton" layoutX="526.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#swapButtonClicked" text="Swap" />
             <ListView fx:id="outField" layoutX="25.0" layoutY="84.0" prefHeight="334.0" prefWidth="547.0" />
@@ -19,6 +19,8 @@
                 <TextField fx:id="inputField" layoutX="27.0" layoutY="36.0" prefHeight="25.0" prefWidth="320.0" promptText="Send Message..." />
                 <Button fx:id="addPicButton" layoutX="2.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#uploadPicClicked" text="+" />
                 <Label fx:id="userLabel" layoutX="27.0" layoutY="18.0" text="Username" />
+            <Button fx:id="joinButton" layoutX="528.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#joinButtonClicked" text="Join Channel" />
+            <Button fx:id="createButton" layoutX="528.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#createButtonClicked" text="Create Channel" />
             </children></AnchorPane>
     </items>
 </SplitPane>

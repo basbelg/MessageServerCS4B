@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="201.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Button fx:id="submitButton" disable="true" layoutX="113.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#onSubmitClicked" text="Submit" />
+      <TextField fx:id="channelNameField" layoutX="167.0" layoutY="88.0" onKeyTyped="#onChannelNameInChanged" prefHeight="25.0" prefWidth="175.0" promptText="Enter Name..." />
+      <Label layoutX="51.0" layoutY="92.0" text="New Channel Name:" />
+      <Button fx:id="cancelCreateButton" layoutX="193.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#onCancelCreateClicked" text="Cancel" />
+   </children>
+</AnchorPane>

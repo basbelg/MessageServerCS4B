@@ -5,26 +5,20 @@ import java.util.List;
 
 public class RegistrationMsg implements Serializable {
     private String username;
-    private String startingChannel;
-    private List<String> subscribedChannels;
+    private List<String> channels;
 
-    public RegistrationMsg(String username, String startingChannel, List<String> subscribedChannels) {
+    public RegistrationMsg(String username, List<String> channels) {
         this.username = username;
-        this.startingChannel = startingChannel;
-        this.subscribedChannels = subscribedChannels;
+        this.channels = channels;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getStartingChannel() {
-        return startingChannel;
-    }
+    public String toString() {return username + " has connected";}
 
-    public String toString() {return username + " subscribed to " + startingChannel;}
-
-    public List<String> getSubscribedChannels() {
-        return subscribedChannels;
+    public List<String> getChannels() {
+        return channels;
     }
 }

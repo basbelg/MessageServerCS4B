@@ -3,23 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
    <children>
-      <TextField fx:id="loginUserField" layoutX="144.0" layoutY="54.0" onKeyTyped="#onNameEntered" promptText="Enter Username..." />
-      <Button fx:id="loginButton" disable="true" layoutX="192.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#loginClicked" text="Login" />
-      <TitledPane animated="false" layoutX="114.0" layoutY="90.0" prefHeight="183.0" prefWidth="202.0" text="Join Chatrooms">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="125.0" prefWidth="200.0">
-               <children>
-                  <CheckBox fx:id="chat1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="CS1A" />
-                  <CheckBox fx:id="chat2" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" text="CS1B" />
-                  <CheckBox fx:id="chat3" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" text="CS3A" />
-                  <CheckBox fx:id="chat4" layoutX="100.0" layoutY="45.0" mnemonicParsing="false" text="CS3B" />
-                  <CheckBox fx:id="chat5" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" text="CS4A" />
-                  <CheckBox fx:id="chat6" layoutX="100.0" layoutY="79.0" mnemonicParsing="false" text="CS4B" />
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
+      <TextField fx:id="loginUserField" layoutX="111.0" layoutY="58.0" onKeyTyped="#onNameEntered" prefHeight="25.0" prefWidth="214.0" promptText="Enter Username..." />
+      <Button fx:id="loginButton" disable="true" layoutX="195.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#loginClicked" text="Login" />
    </children>
 </Pane>
