@@ -61,11 +61,8 @@ public class Server implements Runnable {
             subscribers = synchronizedMap(new HashMap<>());
             history = synchronizedMap(new HashMap<>());
 
-            String[] courses = {"CS1A", "CS1B", "CS4A", "CS4B", "CS3A", "CS3B"};
-            for(int i = 0; i < courses.length; ++i) {
-                subscribers.put(courses[i], synchronizedList(new ArrayList<>()));
-                history.put(courses[i], synchronizedList(new ArrayList<>()));
-            }
+            subscribers.put("welcome", synchronizedList(new ArrayList<>()));
+            history.put("welcome", synchronizedList(new ArrayList<>()));
 
             serverPublishThread = new RequestHandler(requests, clients, subscribers, history);
 
@@ -75,16 +72,7 @@ public class Server implements Runnable {
                 System.out.println("socket accepted: " + socket.toString());
 
                 // manage client connection
-                // elements duplicated here for an unknown reason
                 clients.add(/*count,*/ new Client(socket, requests, clients, subscribers, controller));
-
-//                System.out.println(count);
-//                System.out.println(clients.size());
-//                synchronized (clients) {
-//                    Iterator i = clients.iterator();
-//                    while(i.hasNext())
-//                        System.out.println(((Client) i.next()).getSocket().toString());
-//                }
 
                 controller.setConnectedClients(++count);
             }
