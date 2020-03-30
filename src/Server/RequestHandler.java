@@ -89,10 +89,10 @@ public class RequestHandler implements Runnable {
                             for (Client client : subscribers.get(joinChannelMsg.getJoinChannel()))
                                 if(client.getName() == joinChannelMsg.getSender()) {    // send channel history to new member
                                     client.getOut().reset();
-                                    client.getOut().writeObject(p);
+                                    client.getOut().writeObject(new Packet("JNC-MSG", joinChannelMsg));
                                 }
                                 else                                                    // send NewUserMsg to other clients in this channel
-                                    client.getOut().writeObject(num);
+                                    client.getOut().writeObject(new Packet("NWU-MSG", num));
                             break;
 
                         case "CRT-MSG":

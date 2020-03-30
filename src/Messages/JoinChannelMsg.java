@@ -27,8 +27,5 @@ public class JoinChannelMsg implements Serializable
     public List<Serializable> getChatHistory() { return chatHistory; }
 
     @Override
-    public String toString()
-    {
-        return ( " joined " + joinChannel);
-    }
+    public String toString() {return (sender + " joined " + joinChannel);}
 }

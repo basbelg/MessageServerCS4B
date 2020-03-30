@@ -139,6 +139,7 @@ public class Client implements Runnable {
                     case "JNC-MSG":
                         JoinChannelMsg joinChannelMsg = (JoinChannelMsg) p.getData();
                         joinChannelMsg.setSender(name);
+                        System.out.println(joinChannelMsg.getJoinChannel());
                         subscribers.get(joinChannelMsg.getJoinChannel()).add(this);
                         controller.printMessage(p.getData().toString());
                         break;
