@@ -2,24 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS4B-MessageServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS4B-MessageServer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChangeChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChangeChannelMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChannelMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/ChannelMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/Packet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/PictureMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/PictureMsg.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/RegistrationMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Messages/RegistrationMsg.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/RequestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/RequestHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4B-MessageServer/Server/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/chatrooms.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MessageClientCS4B/sample/chatrooms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Messages/RegistrationMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Messages/RegistrationMsg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +222,7 @@
       <workItem from="1585163970582" duration="522000" />
       <workItem from="1585164820526" duration="6610000" />
       <workItem from="1585186395930" duration="3666000" />
-      <workItem from="1585579952249" duration="440000" />
+      <workItem from="1585579952249" duration="7152000" />
     </task>
     <servers />
   </component>
@@ -273,22 +263,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="882" y="370" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1585580040271" />
-    <state width="1234" height="150" key="GridCell.Tab.0.bottom" timestamp="1585580372633">
+    <state width="1234" height="150" key="GridCell.Tab.0.bottom" timestamp="1585587319640">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="150" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1585580372633" />
-    <state width="1234" height="150" key="GridCell.Tab.0.center" timestamp="1585580372633">
+    <state width="1234" height="150" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1585587319640" />
+    <state width="1234" height="150" key="GridCell.Tab.0.center" timestamp="1585587319640">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="150" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1585580372633" />
-    <state width="1234" height="150" key="GridCell.Tab.0.left" timestamp="1585580372633">
+    <state width="1234" height="150" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1585587319640" />
+    <state width="1234" height="150" key="GridCell.Tab.0.left" timestamp="1585587319640">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="150" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1585580372633" />
-    <state width="1234" height="150" key="GridCell.Tab.0.right" timestamp="1585580372633">
+    <state width="1234" height="150" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1585587319640" />
+    <state width="1234" height="150" key="GridCell.Tab.0.right" timestamp="1585587319640">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="150" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1585580372633" />
+    <state width="1234" height="150" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1585587319640" />
     <state x="656" y="203" key="SettingsEditor" timestamp="1585186434493">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

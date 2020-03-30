@@ -4,9 +4,12 @@ import Messages.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
+
+import static java.util.Collections.synchronizedList;
 
 public class RequestHandler implements Runnable {
     private BlockingQueue<Packet> requests;
@@ -40,38 +43,72 @@ public class RequestHandler implements Runnable {
 
                 try {
                     switch (p.getType()) {
+//                        case "REG-MSG":
+//                            RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
+//
+//                            synchronized (history) {
+//                                for (String channel : registrationMsg.getChannels()) {
+//                                    history.get(channel).add(registrationMsg);
+//
+//                                    for (Client client : subscribers.get(channel)) {
+//                                        // Send the packet with an appropriate message if the client is currently on this channel
+//                                        if (client.getCurrentChannel().equals(channel)) {
+//                                            client.getOut().writeObject(p);
+//
+//                                            // If this client is the person who just registered, send them the history of the channel they're currently on
+//                                            if (registrationMsg.getUsername().equals(client.getName())) {
+//                                                ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(channel);
+//                                                changeChannelMsg.setChatHistory(history.get(channel));
+//                                                client.getOut().writeObject(new Packet("CNG-MSG", changeChannelMsg));
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//
+//                            break;
+//
+//                            case "NWU-MSG":
+//                            NewUserMsg ccm = (NewUserMsg) p.getData();
+//                            break;
+
                         case "REG-MSG":
-                            RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
+                        case "NWU-MSG":
+                            break;
 
-                            synchronized (history) {
-                                for (String channel : registrationMsg.getSubscribedChannels()) {
-                                    history.get(channel).add(registrationMsg);
+                        case "JNC-MSG":
+                            JoinChannelMsg joinChannelMsg = (JoinChannelMsg) p.getData();
 
-                                    for (Client client : subscribers.get(channel)) {
-                                        // Send the packet with an appropriate message if the client is currently on this channel
-                                        if (client.getCurrentChannel().equals(channel)) {
-                                            client.getOut().writeObject(p);
+                            // Add NewUserMsg (for this user) to history
+                            NewUserMsg num = new NewUserMsg(joinChannelMsg.getSender(), joinChannelMsg.getJoinChannel());
+                            history.get(joinChannelMsg.getJoinChannel()).add(num);
 
-                                            // If this client is the person who just registered, send them the history of the channel they're currently on
-                                            if (registrationMsg.getUsername().equals(client.getName())) {
-                                                ChangeChannelMsg changeChannelMsg = new ChangeChannelMsg(channel);
-                                                changeChannelMsg.setChatHistory(history.get(channel));
-                                                client.getOut().writeObject(new Packet("CNG-MSG", changeChannelMsg));
-                                            }
-                                        }
-                                    }
+                            // Set chat history to be sent to client
+                            joinChannelMsg.setChatHistory(history.get(joinChannelMsg.getJoinChannel()));
+
+                            for (Client client : subscribers.get(joinChannelMsg.getJoinChannel()))
+                                if(client.getName() == joinChannelMsg.getSender()) {    // send channel history to new member
+                                    client.getOut().reset();
+                                    client.getOut().writeObject(p);
                                 }
-                            }
+                                else                                                    // send NewUserMsg to other clients in this channel
+                                    client.getOut().writeObject(num);
+                            break;
 
+                        case "CRT-MSG":
+                            CreateChannelMsg createChannelMsg = (CreateChannelMsg) p.getData();
+
+                            history.put(createChannelMsg.getChannelName(), synchronizedList(new ArrayList<>()));
+
+                            for(Client client: clients)
+                                client.getOut().writeObject(p);
                             break;
 
                         case "TXT-MSG":
                             ChannelMsg channelMsg = (ChannelMsg) p.getData();
                             String txtChannel = channelMsg.getPublishToChannel();
 
-                            synchronized (history) {
-                                history.get(txtChannel).add(channelMsg);
-                            }
+                            history.get(txtChannel).add(channelMsg);
 
                             // Send the packet with an appropriate message if the client is currently on this channel
                             for (Client client : subscribers.get(txtChannel))
@@ -93,17 +130,18 @@ public class RequestHandler implements Runnable {
                                     client.getOut().writeObject(p);
                             break;
 
-                        case "CNG-MSG":
-                            ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
-                            changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
-                            // If this is the client who wants to change channels, send th
-                            for (Client client : clients)
-                                if (client.getName().equals(changeChannelMsg.getSender())) {
-                                    client.getOut().reset();
-                                    client.getOut().writeObject(p);
-                                    break; //If the client who wants to change their channel is found, exit the loop
-                                }
-                            break;
+                            // Unnecessary
+//                        case "CNG-MSG":
+//                            ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
+//                            changeChannelMsg.setChatHistory(history.get(changeChannelMsg.getSwappedChannel()));
+//                            // If this is the client who wants to change channels, send th
+//                            for (Client client : clients)
+//                                if (client.getName().equals(changeChannelMsg.getSender())) {
+//                                    client.getOut().reset();
+//                                    client.getOut().writeObject(p);
+//                                    break; //If the client who wants to change their channel is found, exit the loop
+//                                }
+//                            break;
 
                         default:
                             System.out.println("RequestHandler - ERROR (No matching message type)");

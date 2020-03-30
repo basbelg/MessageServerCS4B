@@ -10,6 +10,8 @@ import java.util.concurrent.BlockingQueue;
 
 import Messages.*;
 
+import static java.util.Collections.synchronizedList;
+
 public class Client implements Runnable {
     // client info
     private String name;
@@ -109,14 +111,10 @@ public class Client implements Runnable {
                 switch (p.getType()) {
                     case "REG-MSG":
                         RegistrationMsg registrationMsg = (RegistrationMsg) p.getData();
-
                         name = registrationMsg.getUsername();
-                        currentChannel = registrationMsg.getStartingChannel();
-                        channels = registrationMsg.getSubscribedChannels();
-
-                        for (String channel : channels)
-                            subscribers.get(channel).add(this);
-
+                        //channels = registrationMsg.getChannels();
+                        //for (String channel : channels)
+                        //    subscribers.get(channel).add(this);
                         controller.printMessage(registrationMsg.toString());
                         break;
 
@@ -130,11 +128,27 @@ public class Client implements Runnable {
                         controller.printMessage(p.getData().toString());
                         break;
 
-                    case "CNG-MSG":
+                        // dont need a change channel message anymore
+                   /* case "CNG-MSG":
                         ChangeChannelMsg changeChannelMsg = (ChangeChannelMsg) p.getData();
                         changeChannelMsg.setSender(name);
                         currentChannel = changeChannelMsg.getSwappedChannel();
                         controller.printMessage(p.getData().toString());
+                        break;*/
+
+                    case "JNC-MSG":
+                        JoinChannelMsg joinChannelMsg = (JoinChannelMsg) p.getData();
+                        joinChannelMsg.setSender(name);
+                        subscribers.get(joinChannelMsg.getJoinChannel()).add(this);
+                        controller.printMessage(p.getData().toString());
+                        break;
+
+                    case "CRT-MSG":
+                        CreateChannelMsg createChannelMsg = (CreateChannelMsg) p.getData();
+                        createChannelMsg.setChannelOwner(name);
+                        List<Client> temp = synchronizedList(new ArrayList<>());
+                        temp.add(this);
+                        subscribers.put(createChannelMsg.getChannelName(), temp);
                         break;
 
                     default:
