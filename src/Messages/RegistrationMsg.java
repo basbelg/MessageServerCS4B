@@ -7,7 +7,7 @@ public class RegistrationMsg implements Serializable {
     private String username;
     private List<String> channels;
 
-    public RegistrationMsg(String username, List<String> channels) {
+    public RegistrationMsg(String username) {
         this.username = username;
         this.channels = channels;
     }
